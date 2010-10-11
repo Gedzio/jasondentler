@@ -109,6 +109,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleCQRS.Example\SimpleCQRS.Example.csproj">
+      <Project>{4BCE68BB-37F0-4B03-9A88-270EB105C93A}</Project>
+      <Name>SimpleCQRS.Example</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleCQRS\SimpleCQRS.csproj">
       <Project>{DAFD2A8A-D6B0-4433-8DDF-B98460C64EC6}</Project>
       <Name>SimpleCQRS</Name>

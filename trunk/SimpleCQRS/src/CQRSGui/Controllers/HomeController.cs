@@ -8,12 +8,12 @@ namespace CQRSGui.Controllers
     public class HomeController : Controller
     {
         private FakeBus _bus;
-        private ReadModelFacade _readmodel;
+        private IReadModelFacade _readmodel;
 
         public HomeController()
         {
             _bus = ServiceLocator.Bus;
-            _readmodel = new ReadModelFacade();
+            _readmodel = new MemoryReadModelFacade();
         }
 
         public ActionResult Index()
