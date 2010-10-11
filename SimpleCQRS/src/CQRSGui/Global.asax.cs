@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using SimpleCQRS;
+using SimpleCQRS.EventStore.Memory;
 
 namespace CQRSGui
 {
@@ -33,7 +34,7 @@ namespace CQRSGui
 
             var bus = new FakeBus();
 
-            var storage = new EventStore(bus);
+            var storage = new MemoryEventStore(bus);
             var rep = new Repository<InventoryItem>(storage);
             var commands = new InventoryCommandHandlers(rep);
             bus.RegisterHandler<CheckInItemsToInventory>(commands.Handle);
