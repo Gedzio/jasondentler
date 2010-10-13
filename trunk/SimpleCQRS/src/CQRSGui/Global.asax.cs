@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
 using SimpleCQRS;
 using SimpleCQRS.EventStore.Memory;
 
@@ -32,16 +29,24 @@ namespace CQRSGui
 
             RegisterRoutes(RouteTable.Routes);
 
+            var kernel = new StandardKernel(
+                new KernelRegistrationModule(),
+                new BusModule(),
+                new EventStoreModule(),
+                new RepositoryModule());
+
             var bus = new FakeBus();
 
             var storage = new MemoryEventStore(bus);
             var rep = new Repository<InventoryItem>(storage);
+
             var commands = new InventoryCommandHandlers(rep);
             bus.RegisterHandler<CheckInItemsToInventory>(commands.Handle);
             bus.RegisterHandler<CreateInventoryItem>(commands.Handle);
             bus.RegisterHandler<DeactivateInventoryItem>(commands.Handle);
             bus.RegisterHandler<RemoveItemsFromInventory>(commands.Handle);
             bus.RegisterHandler<RenameInventoryItem>(commands.Handle);
+
             var detail = new InvenotryItemDetailView();
             bus.RegisterHandler<InventoryItemCreated>(detail.Handle);
             bus.RegisterHandler<InventoryItemDeactivated>(detail.Handle);

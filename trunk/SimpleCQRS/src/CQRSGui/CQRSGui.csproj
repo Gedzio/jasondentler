@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -65,11 +68,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="EventStoreModule.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="KernelRegistrationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryModule.cs" />
     <Compile Include="ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +116,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleCQRS.EventStore.NHibernate\SimpleCQRS.EventStore.NHibernate.csproj">
+      <Project>{D14747BA-22E2-45C8-8499-2BB64E23825E}</Project>
+      <Name>SimpleCQRS.EventStore.NHibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleCQRS.Example\SimpleCQRS.Example.csproj">
       <Project>{4BCE68BB-37F0-4B03-9A88-270EB105C93A}</Project>
       <Name>SimpleCQRS.Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleCQRS.Ninject\SimpleCQRS.Ninject.csproj">
+      <Project>{04E5CB2D-B5BE-4E70-92C2-E715082D7309}</Project>
+      <Name>SimpleCQRS.Ninject</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleCQRS\SimpleCQRS.csproj">
       <Project>{DAFD2A8A-D6B0-4433-8DDF-B98460C64EC6}</Project>
