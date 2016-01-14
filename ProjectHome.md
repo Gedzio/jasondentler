@@ -1,0 +1,1 @@
+All code from JasonDentler.com, licensed under LGPL 3, except where stated otherwise.
